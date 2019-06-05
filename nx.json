@@ -1,0 +1,18 @@
+{
+  "npmScope": "nx-build-error",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "nx-build-error": {
+      "tags": []
+    },
+    "nx-build-error-e2e": {
+      "tags": []
+    }
+  }
+}

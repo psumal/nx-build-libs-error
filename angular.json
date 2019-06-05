@@ -1,0 +1,134 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "nx-build-error": {
+      "root": "apps/nx-build-error/",
+      "sourceRoot": "apps/nx-build-error/src",
+      "projectType": "application",
+      "prefix": "nx-build-error",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/nx-build-error",
+            "index": "apps/nx-build-error/src/index.html",
+            "main": "apps/nx-build-error/src/main.ts",
+            "polyfills": "apps/nx-build-error/src/polyfills.ts",
+            "tsConfig": "apps/nx-build-error/tsconfig.app.json",
+            "assets": [
+              "apps/nx-build-error/src/favicon.ico",
+              "apps/nx-build-error/src/assets"
+            ],
+            "styles": ["apps/nx-build-error/src/styles.css"],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/nx-build-error/src/environments/environment.ts",
+                  "with": "apps/nx-build-error/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "nx-build-error:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "nx-build-error:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "nx-build-error:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/nx-build-error/tsconfig.app.json",
+              "apps/nx-build-error/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/nx-build-error/jest.config.js",
+            "tsConfig": "apps/nx-build-error/tsconfig.spec.json",
+            "setupFile": "apps/nx-build-error/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "nx-build-error-e2e": {
+      "root": "apps/nx-build-error-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/nx-build-error-e2e/cypress.json",
+            "tsConfig": "apps/nx-build-error-e2e/tsconfig.e2e.json",
+            "devServerTarget": "nx-build-error:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "nx-build-error:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/nx-build-error-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/schematics"
+  },
+  "schematics": {
+    "@nrwl/schematics:application": {
+      "framework": "angular"
+    }
+  },
+  "defaultProject": "nx-build-error"
+}
