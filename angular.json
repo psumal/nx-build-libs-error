@@ -116,6 +116,39 @@
           }
         }
       }
+    },
+    "test-libs-error": {
+      "root": "libs/test-libs-error",
+      "sourceRoot": "libs/test-libs-error/src",
+      "projectType": "library",
+      "prefix": "nx-build-error",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/test-libs-error/tsconfig.lib.json",
+            "project": "libs/test-libs-error/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/test-libs-error/tsconfig.lib.json",
+              "libs/test-libs-error/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/test-libs-error/jest.config.js",
+            "tsConfig": "libs/test-libs-error/tsconfig.spec.json"
+          }
+        }
+      },
+      "schematics": {}
     }
   },
   "cli": {

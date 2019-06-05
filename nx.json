@@ -13,6 +13,9 @@
     },
     "nx-build-error-e2e": {
       "tags": []
+    },
+    "test-libs-error": {
+      "tags": []
     }
   }
 }
